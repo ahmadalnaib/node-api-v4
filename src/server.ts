@@ -3,6 +3,7 @@ import express from 'express';
 import router from './router';
 import morgan from 'morgan';
 import cors from 'cors';
+import {verifyJWT} from './modules/auth';
 
 const app=express();
 
@@ -19,6 +20,6 @@ app.get('/',(req,res)=>{
 }
 );
 
-app.use('/api',router)
+app.use('/api',verifyJWT,router)
 
 export default app;

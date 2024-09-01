@@ -1,3 +1,4 @@
+import * as dotenv from 'dotenv';
 // const app=require('./server');
 import app from './server';
 
