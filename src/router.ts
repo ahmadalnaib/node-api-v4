@@ -1,4 +1,6 @@
 import express from 'express';
+import {body , validationResult} from 'express-validator';
+import { handleInputErros } from './modules/middleware';
 
 const router = express.Router();
 
@@ -12,7 +14,8 @@ router.get('/product/:id',()=>{
   
 })
 
-router.put('/product/:id',()=>{
+router.put('/product/:id',body('name').isString(),handleInputErros,(req,res)=>{
+  
     
   })
 
