@@ -1,16 +1,17 @@
 import express from 'express';
 import {body , oneOf,check, validationResult} from 'express-validator';
 import { handleInputErros } from './modules/middleware';
+import { createProduct, getProducts } from './handlers/product';
+import { create } from 'domain';
 
 
 const router = express.Router();
 
 // product routes
 
-router.get('/product',(req,res)=>{
-  res.json('product');
+router.get('/product',getProducts)
 
-})
+
 router.get('/product/:id',()=>{
   
 })
@@ -20,10 +21,10 @@ router.put('/product/:id',body('name').isString(),handleInputErros,(req,res)=>{
     
   })
 
-router.post('/product',body('name').isString(),handleInputErros,()=>{
-    
-  })
-
+router.post('/product',
+  body('name').isString(),
+  handleInputErros,createProduct);
+  
 router.delete('/product/:id',()=>{
     
   })
