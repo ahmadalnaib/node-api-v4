@@ -26,4 +26,15 @@ app.use('/api',verifyJWT,router)
 app.post('/user',createNewUser);
 app.post('/signin',signin);
 
+app.use((err,req,res,next)=>{
+ if(err.type === 'auth'){
+    return res.status(401).json({error:err.message});
+ } else if (err.type === 'input'){
+    return res.status(400).json({error:err.message});
+ }else{
+    return res.status(500).json({error:'Internal server error'});
+ }
+}
+);
+
 export default app;
