@@ -1,8 +1,8 @@
 import express from 'express';
 import {body , oneOf,check, validationResult} from 'express-validator';
 import { handleInputErros } from './modules/middleware';
-import { createProduct, getProducts } from './handlers/product';
-import { create } from 'domain';
+import { createProduct, deleteProduct, getOneProduct, getProducts,updateProduct } from './handlers/product';
+
 
 
 const router = express.Router();
@@ -12,22 +12,15 @@ const router = express.Router();
 router.get('/product',getProducts)
 
 
-router.get('/product/:id',()=>{
-  
-})
+router.get('/product/:id',getOneProduct)
 
-router.put('/product/:id',body('name').isString(),handleInputErros,(req,res)=>{
-  
-    
-  })
+router.put('/product/:id',body('name').isString(),handleInputErros,updateProduct)
 
 router.post('/product',
   body('name').isString(),
   handleInputErros,createProduct);
-  
-router.delete('/product/:id',()=>{
-    
-  })
+
+router.delete('/product/:id',deleteProduct)
 
 
 
@@ -53,6 +46,7 @@ router.put('/update/:id',
 router.post('/update', 
 body('title').exists().isString(),
 body('body').exists().isString(),
+body('productId').exists().isString(),
 ()=>{
     
   })
