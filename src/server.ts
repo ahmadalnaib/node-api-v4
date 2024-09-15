@@ -17,7 +17,7 @@ app.use(express.urlencoded({extended:true}));
 
 
 app.get('/',(req,res)=>{
-    res.send('<h1>hi</h1>');
+    res.json({message:'hi'});
 }
 );
 
